@@ -96,3 +96,13 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - 12 of 36 events outside the map's forest: 7 in squares <25% forest, 3 "other broadleaf", 2 closed reserves.
 
 **Decisions**: none yet. Nothing changed in the live site or its scoring. Next ideas (Real decides): re-time rain (30–60 days, smaller soak), narrower temperature band, forest edges.
+
+---
+
+## 2026-11-27 — Experiment 03: re-time the rain → `reports/EXP03-RAIN-TIMING.md`
+- Real: "whatever you like" → started with back-test recommendation 1.
+- 23 events (main group, Nov–Apr, inside the map's forest) + 78 (all mushrooms) as a check.
+- Rain in 10-day steps 0–60 days before: **no step beats 50%** (all ranges include 50%).
+- 6 re-timed scores: best (rain 30–60 d + gate 10 mm over 60 d) +5–7 points on the main group, but not on held-back seasons 2025–26 and not on all mushrooms → noise.
+- **Decision: don't change the rain part.** Weather signal too weak to see with this data. Next: forest edges (recommendation 3).
+- Idea for later (Real's call): collect dated finds + "searched, nothing" days to tune weather properly.

@@ -20,3 +20,4 @@ experiments/02-backtest/results_*.json
 experiments/02-backtest/log_*.txt
 experiments/02-backtest/diagnose_*.json
 experiments/02-backtest/results.json
+experiments/03-rain-timing/results_*.json
