@@ -116,3 +116,4 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Edges (250 / 500 m) and WorldCover catch a few more but mark ~1,000–1,500 km² more land → map less sharp. Not recommended.
 - Other broadleaf: +3 main finds for +340 km², no target gain. Not now.
 - **Decision: none yet.** Possible next step (Real's call): show "15% if mostly pine" on the lab map to look at the new squares.
+- **Pine 15% button** on the lab map (local + phone copy, 27 Nov): shows the 3,040 squares (190 km²) the rule would add, in bright blue, with a note. Lab only; not in the score. Real to look and decide.
