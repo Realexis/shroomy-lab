@@ -32,7 +32,7 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 
 ---
 
-## 2026-11-27 — Job 1: "Past finds" layer (local only so far)
+## 2026-11-27 — Job 1: "Past finds" layer (local + phone copy)
 **What we did**
 - `experiments/01-past-finds/fetch_finds.py`: every Cyprus fungi record (lichens included) from **iNaturalist** (place 10289 = whole island, taxon 47170 = Fungi) and **GBIF** (country CY, kingdom Fungi, with coordinates). Free APIs, no keys.
 - `experiments/01-past-finds/enrich_finds.py`: adds a **group** (mushroom / lichen / other / not named, from the name's class via the GBIF name checker) and the **district** (geoBoundaries, from OpenStreetMap, ODbL). Writes `site/web/public/data/finds.json` for the map.
@@ -60,7 +60,7 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Every card shows the credit line and a link to the original record.
 
 **Decisions**
-- Finds are **not** on the phone copy and **not** in the public GitHub repo yet. `publish.sh` leaves them out unless run with `PUBLISH_FINDS=1`. Waiting for Real's answer.
+- **Real, 27 Nov: yes, finds on the phone copy.** Published with `PUBLISH_FINDS=1 bash publish.sh` (the built `gh-pages` branch carries `data/finds.json`). Checked online: all 2,356 records load. The source branch `main` still keeps `data/finds/` out of git (rebuild with the two scripts). Always publish with `PUBLISH_FINDS=1` from now on, or the finds drop off the phone copy.
 - Records before 1980 (27) sit in the "before 1980" end of the year slider.
 
 **Limits**
