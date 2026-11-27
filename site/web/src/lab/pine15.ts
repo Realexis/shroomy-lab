@@ -16,7 +16,7 @@ export class Pine15 {
     this.note.className = "pine15-note";
     this.note.hidden = true;
     this.note.innerHTML = `<strong><span class="pine15-sw" aria-hidden="true"></span>Lab test: new pine squares</strong>
-      <span>15–25% forest, mostly pine. The live map leaves these out (it needs 25%). 3,040 squares, 190 km². Not live.</span>`;
+      <span>15–25% forest, mostly pine. The live map leaves these out (it needs 25%); the lab map now scores them. 3,040 squares, 190 km². Not live.</span>`;
     stage.append(this.note);
   }
 

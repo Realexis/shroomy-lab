@@ -22,3 +22,4 @@ experiments/02-backtest/diagnose_*.json
 experiments/02-backtest/results.json
 experiments/03-rain-timing/results_*.json
 experiments/04-forest-edges/results_*.json
+experiments/05-pine15-score/backup/

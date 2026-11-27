@@ -117,3 +117,14 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Other broadleaf: +3 main finds for +340 km², no target gain. Not now.
 - **Decision: none yet.** Possible next step (Real's call): show "15% if mostly pine" on the lab map to look at the new squares.
 - **Pine 15% button** on the lab map (local + phone copy, 27 Nov): shows the 3,040 squares (190 km²) the rule would add, in bright blue, with a note. Lab only; not in the score. Real to look and decide.
+
+---
+
+## 2026-11-27 — Experiment 05: 15% pine squares IN the lab score (Real: "Yes, add to lab score")
+- `experiments/05-pine15-score/make_habitat.py`: squares with 15–25% forest, mostly conifer, open, on land → forest habitat; black pine at 1,200 m+, else Calabrian pine (live tree rule). 3,040 squares (190 km²): Calabrian 3,002, black 38.
+- Rebuilt the lab map data with the **live pipeline code** (`web.build`) and the robot's saved weather run for 27 Nov (copied read-only; **no new weather calls**), then the 50 m heat map (`scripts/lab-heat50.py`).
+- Lab map: 44,511 → **47,551** forest squares. 136 of the new squares are burned forest and stay out (same rule as live).
+- Today (27 Nov): new squares median score 17, live forest 24; 45+ ("Fair" or better): 10% vs 15%.
+- Backup of the live-copy habitat and map data: `experiments/05-pine15-score/backup/` (local only). To undo: copy them back.
+- Published to the phone copy (with finds). **The lab map data does not update by itself**: it stays on 27 Nov weather until rebuilt by hand.
+- Nothing changed on the live site.
