@@ -1,0 +1,12 @@
+# Built site and its local publish copy (the gh-pages branch carries the big map files, not this branch)
+.pages/
+node_modules/
+dist/
+.DS_Store
+.venv/
+__pycache__/
+# Private things, never public
+private/
+*.env
+.env*
+static_key*

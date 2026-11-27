@@ -1,0 +1,113 @@
+# Every data source: where it comes from, its licence, and the exact credit line.
+# The "About the data" page is built from this file.
+# licence_status: verified | to_verify
+
+dem:
+  name: Copernicus DEM GLO-30
+  url: https://copernicus-dem-30m.s3.amazonaws.com/
+  tiles: [N34_00_E032_00, N34_00_E033_00, N34_00_E034_00, N35_00_E032_00, N35_00_E033_00, N35_00_E034_00]
+  licence: Copernicus DEM licence (free, attribution required)
+  licence_status: verified
+  credit: "© DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+  note: Surface model — includes tree tops and buildings.
+
+forest_type:
+  name: Copernicus HRL Forest Type 2018 (10 m)
+  url: https://image.discomap.eea.europa.eu/arcgis/rest/services/GioLandPublic/HRL_ForestType_2018/ImageServer
+  classes: {0: non-forest, 1: broadleaved, 2: coniferous, 255: outside area}
+  licence: Copernicus full, free and open data policy (Regulation (EU) 2021/696)
+  licence_status: verified
+  credit: "© European Union, Copernicus Land Monitoring Service 2018, European Environment Agency (EEA)"
+
+nature_reserves:
+  name: EEA Nationally designated areas (NatDA) v24 — Cyprus code CY04 "Nature reserve"
+  url: https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer/4
+  filter: "countryCode='CY' AND designationTypeCode='CY04'"
+  licence: CC BY 4.0
+  licence_status: verified
+  credit: "Nationally designated areas (NatDA) v24 © European Environment Agency (EEA), CC BY 4.0"
+  note: >
+    Covers the 7 nature reserves of the Republic of Cyprus (Chionistra, Drys tis Lanias,
+    Kryos Potamos, Livadhi tou Pasha, Madari, Pikromiloudhi, Tripylos-Mavroi Kremmoi).
+    No reserve data for areas not under Republic control (TODO).
+
+natura2000:
+  name: Natura 2000 sites (EEA)
+  url: https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer
+  filter: "MS='CY'"
+  licence: CC BY 4.0
+  licence_status: to_verify   # EEA standard licence; record not yet read
+  credit: "Natura 2000 © European Environment Agency (EEA)"
+
+geology:
+  name: Geology of Cyprus — Geologic Units (Geological Survey Department, via DLS INSPIRE)
+  url: https://eservices.dls.moi.gov.cy/inspire/rest/services/INSPIRE/GE_Geology/MapServer
+  licence: Licence being confirmed with the Department of Lands and Surveys
+  licence_status: to_verify
+  credit: "Geological Survey Department, Republic of Cyprus (via Department of Lands and Surveys INSPIRE services)"
+  use: Used only inside the model to find the golden oak zone. The rock map itself is not published.
+  contact: INSPIRE@dls.moi.gov.cy
+
+# Later phases (already planned):
+open_meteo:
+  name: Open-Meteo Forecast API
+  licence: CC BY 4.0 (non-commercial free tier)
+  licence_status: verified
+  credit: "Weather data by Open-Meteo.com (CC BY 4.0)"
+openstreetmap:
+  name: OpenStreetMap (Geofabrik Cyprus extract, Protomaps build)
+  licence: ODbL 1.0
+  licence_status: verified
+  credit: "© OpenStreetMap contributors"
+inaturalist:
+  name: iNaturalist species photos
+  url: https://api.inaturalist.org/v1/
+  licence: Per photo. Only CC0, CC BY, CC BY-SA and CC BY-NC photos are used.
+  licence_status: verified
+  credit: "Species photos from iNaturalist (inaturalist.org). Each photo shows its author and licence."
+  use: Photos on the species cards. Shown from iNaturalist's open-data store, not copied.
+gbif:
+  name: GBIF occurrence records (Cyprus)
+  url: https://api.gbif.org/v1/
+  licence: Counts and links only. Each dataset keeps its own licence (CC0, CC BY or CC BY-NC).
+  licence_status: verified
+  credit: "Record counts from GBIF.org (Global Biodiversity Information Facility) and iNaturalist."
+  use: The "Public records in Cyprus" part of each species card. Never used for the score or the map.
+
+burned_areas:
+  name: EFFIS burnt areas (MODIS/Sentinel-2 mapped fires), Cyprus, 2018 onwards
+  url: https://maps.effis.emergency.copernicus.eu/effis (WFS layer modis.ba.poly.<year>)
+  licence: CC BY 4.0 (EFFIS data licence page, https://forest-fire.emergency.copernicus.eu/about-effis/data-license, read 2026-11-13). Credit required and changes must be indicated.
+  licence_status: verified    # Real, 2026-11-13: keep burned forest on the map (licence now checked)
+  credit: "Burnt areas © European Union, European Forest Fire Information System (EFFIS), Copernicus Emergency Management Service, CC BY 4.0. Changed: Cyprus fires only, outlines rounded, used to mark burned forest."
+  use: Forest burned since the 2018 forest map stops counting as habitat; recent burns count for morels.
+
+# V5 (2026-11-13): new daily sources. NOT used by the score or the site yet.
+dom_rain:
+  name: Cyprus Department of Meteorology, provisional daily and cumulative precipitation (stations)
+  url: https://www.dom.org.cy/CLIMATOLOGY/English/Provisional%20Precipitation%20Data/
+  file: "Daily and Cummulative Precipitation_DDMMYYYY_ENG.pdf (only today's file stays online)"
+  licence: Not stated on the page or in the PDF
+  licence_status: to_verify     # ask the department before ANY public use
+  public: false                 # never listed on the site (export/web.py public_credits)
+  credit: "Department of Meteorology, Republic of Cyprus (provisional data)"
+  use: Saved daily into a PRIVATE archive on the Mac (shared shelf, files/dom-rain). Never published.
+  stations_in_forest: [PANO PANAGIA, STAVROS PSOKAS, PRODROMOS, PLATANIA, SAITTAS, PANAGIA BRIDGE]   # user's list
+  note: >
+    17 stations + an island average on 13 Nov 2026. No coordinates in the PDF (TODO D9).
+    The same folder also keeps daily rain MAPS (contour pictures, JPG) for rainy days since 2019:
+    .../Provisional%20Precipitation%20Data/Daily%20Precipitation%20Map/<year>/<month>/
+
+swi_europe_1km:
+  name: Copernicus CLMS Soil Water Index, Europe, 1 km, daily, version 2 (Sentinel-1 + Metop ASCAT)
+  url: https://land.copernicus.eu/en/products/soil-moisture/daily-soil-water-index-europe-1km-v2
+  catalogue: https://stac.dataspace.copernicus.eu/v1/collections/clms_swi_europe_1km_daily_v2_cog
+  licence: Copernicus full, free and open data policy (https://land.copernicus.eu/en/data-policy)
+  licence_status: to_verify     # data-policy page linked by the catalogue, not yet read in full
+  public: false                 # not used by the site yet
+  credit: "Soil Water Index © European Union, Copernicus Land Monitoring Service"
+  access: Catalogue is public; the files need a free Copernicus Data Space account (the USER creates it).
+  note: >
+    Checked 2026-11-13: the catalogue says the map covers 35.0-72.0 N only. Most of the Troodos forest
+    is just south of 35.0 N. And no file after 15 Sep 2026 (same for every CLMS soil-moisture product).
+    On hold until both are checked: `uv run python -m shroomy.sources.swi`.

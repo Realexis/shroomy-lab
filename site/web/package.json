@@ -1,0 +1,28 @@
+{
+  "name": "cyprus-mushroom-finder",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/check-words.mjs && tsc --noEmit && vite build",
+    "build:test-en": "VITE_COUNTER=off VITE_NOINDEX=1 VITE_OTHER_LANG_URL=el/ npm run build",
+    "build:el-test": "VITE_LANG=el VITE_COUNTER=off VITE_NOINDEX=1 VITE_OTHER_LANG_URL=../ VITE_FILES_BASE=../ npm run build",
+    "dev:el": "VITE_LANG=el VITE_COUNTER=off VITE_OTHER_LANG_URL=./ vite",
+    "preview": "vite preview",
+    "check:words": "node scripts/check-words.mjs",
+    "predev": "node scripts/copy-worker.mjs && node scripts/views.mjs",
+    "prebuild": "node scripts/copy-worker.mjs",
+    "postbuild": "node scripts/zip-pmtiles-names.mjs && node scripts/lite-prune.mjs && node scripts/views.mjs"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "5.2.8",
+    "@protomaps/basemaps": "5.7.2",
+    "maplibre-gl": "6.16.0",
+    "pmtiles": "4.5.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}

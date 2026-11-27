@@ -1,0 +1,42 @@
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
+import "./styles/app.css";
+import { mountAgree, mountEmergency } from "./ui/safety";
+import { applyTheme, systemTheme } from "./ui/theme";
+import { esc, fmtDay, type Meta } from "./ui/card";
+import { LOOKALIKES, SPECIES } from "./ui/species";
+import { COUNTER_SITE, countPage, mountCounter } from "./count";
+import { T } from "./i18n";
+import { fileUrl } from "./map/files";
+import { mountLangSwitch } from "./ui/lang";
+
+const A = T.about;
+
+applyTheme(systemTheme());
+mountEmergency([...document.querySelectorAll<HTMLElement>("[data-emergency]")]);
+mountLangSwitch("about.html");
+mountAgree();
+mountCounter();
+countPage("/about");
+// The note about counting shows only when a counter is set up.
+if (COUNTER_SITE) document.getElementById("counting")!.hidden = false;
+
+fetch(fileUrl("data/meta.json"), { cache: "no-cache" })
+  .then((r) => r.json() as Promise<Meta>)
+  .then((m) => {
+    document.getElementById("run")!.textContent = fmtDay(m.weather_run, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    document.getElementById("credits")!.innerHTML = m.credits.map((c) => `
+      <div class="card">
+        <p><b>${esc(c.name)}</b></p>
+        <p>${esc(A.credit[c.credit] ?? c.credit)}</p>
+        <p class="tag">${esc(A.licence[c.licence] ?? c.licence)}${c.status === "verified" ? "" : A.beingChecked}</p>
+        ${c.use ? `<p class="tag">${esc(A.use[c.use] ?? c.use)}</p>` : ""}
+      </div>`).join("") + `
+      <div class="card"><p><b>${A.protomapsName}</b></p><p>${A.protomapsCredit}</p></div>`;
+  });
+
+// Every photo credit on the mushroom cards, grouped by species (species first, then lookalikes).
+const photoList = [...SPECIES.map((s) => ({ name: s.latin, photos: s.photos })),
+  ...LOOKALIKES.map((l) => ({ name: l.latin, photos: l.photos }))];
+document.getElementById("photo-credits")!.innerHTML = photoList.map((g) => g.photos.map((p) => `
+  <li><i>${esc(p.taxon ?? g.name)}</i>: <a href="${esc(p.page)}" target="_blank" rel="noopener">${esc(p.attribution)}</a></li>`).join("")).join("");

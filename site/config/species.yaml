@@ -1,0 +1,118 @@
+# =====================================================================
+# Target species (v1). Facts come from the project brief. Tags:
+#   [BRIEF] = from the brief    [DRAFT] = our reading, listed in docs/TODO-facts.md
+#   [S7]    = the user's answer to open question S7 (2026-11-12)
+#
+# A species filter changes ONLY two things [BRIEF]:
+#   1. the habitat filter (which trees + which altitude bands count)
+#   2. the season window (months). Outside the window the score is 0.
+# Inside the window the season factor is 1; every other factor and weight
+# stays the same as the general map (config/scoring.yaml).
+#
+# Tree codes (pipeline habitat layer):
+#   1 Calabrian pine (likely)   2 Troodos black pine (likely)
+#   3 Golden oak (likely)       4 Other broadleaf   (5 cedar = closed reserve)
+#   6 Burned forest, recent fire (first two springs)   7 Burned forest (habitat/burns.py)
+# Altitude bands: 1 low, 2 mid, 3 high (>1,200 m)
+#
+# Words on the site: "good conditions for [species] habitat", never "find X here".
+#
+# V3 Fable feedback (2026-11-13) changed months and morel habitat. Source tags (LOI16, LOI19,
+# WIK-LS, PIO08, ...) are explained in docs/SOURCES.md.
+# =====================================================================
+
+species:
+  - code: lde
+    latin: Lactarius deliciosus
+    common: red pine mushroom                       # [BRIEF]
+    local: kokkinomanitaro                          # [BRIEF] (the one local name not to confirm)
+    local_confirmed: true
+    trees: [1, 2, 3]                                # [BRIEF] pine; also golden oak, kermes oak
+    trees_text: "Pine (Calabrian and black pine); also golden oak and kermes oak"
+    bands: [1, 2, 3]                                # [BRIEF] "all pine"
+    altitude_text: "All pine altitudes"
+    months: [10, 11, 12, 1, 2]                      # [BRIEF] Oct-Jan, + Feb: records in Feb; season best Nov-Feb [LOI16]
+    notes:
+      - "Kermes oak is not on our tree map yet, so those areas are not counted."   # [DRAFT] D8
+    inat: ["Lactarius deliciosus"]
+
+  - code: lsa
+    latin: Lactarius sanguifluus
+    common: bloody milk cap                         # [BRIEF]
+    local: gematas                                  # [BRIEF] to confirm
+    local_confirmed: false
+    trees: [2]                                      # [BRIEF] black pine
+    trees_text: "Troodos black pine"
+    bands: [3]                                      # [BRIEF] >1,200 m
+    altitude_text: "Above 1,200 m"
+    months: [9, 10, 11]                             # [BRIEF] Sep-Oct, + Nov: fruits Sep-Nov in southern Europe [WIK-LS]
+    notes: []
+    inat: ["Lactarius sanguifluus"]
+
+  - code: rde
+    latin: Russula delica
+    common: milk-white brittlegill                  # [BRIEF]
+    local: aspromanitaro                            # Dept of Forests leaflet "Μανιτάρια της Κύπρου" (P.I.O. 232/2004), Real 2026-11-14: Ασπρομανίταρο
+    local_confirmed: true
+    # [BRIEF] "all forest". [S7] Other broadleaf (4) counts only for morels -> left out here.
+    # Open question S9 in docs/TODO-facts.md.
+    trees: [1, 2, 3]
+    trees_text: "All forest (pine and golden oak on this map)"
+    bands: [1, 2, 3]                                # [BRIEF] all
+    altitude_text: "All altitudes"
+    months: [9, 10]                                 # [BRIEF] Sep-Oct, warm spells
+    notes:
+      - "The brief says it fruits in warm spells. That rule is not in the score yet (TODO S5)."
+    inat: ["Russula delica"]
+
+  - code: tca
+    latin: Tricholoma caligatum
+    common: matsutake                               # [BRIEF]
+    local: imero                                    # Dept of Forests leaflet "Μανιτάρια της Κύπρου" (P.I.O. 232/2004), Real 2026-11-14: Ήμερο or Μαραθεύτικο
+    local_confirmed: true
+    trees: [1, 2, 3]                                # [BRIEF] pine, golden oak
+    trees_text: "Pine and golden oak"
+    bands: [2, 3]                                   # [BRIEF] mid-high
+    altitude_text: "Mid and high altitudes"
+    months: [11, 12, 1]                             # [BRIEF] Nov-Jan
+    notes: []
+    inat: ["Tricholoma caligatum"]
+
+  - code: mor
+    latin: Morchella                                # Real, 2026-11-14: the genus (was "M. esculenta / elata" [BRIEF]; no Cyprus source uses those names)
+    common: morels                                  # [BRIEF]
+    local: arnoui                                   # Dept of Forests leaflet "Μανιτάρια της Κύπρου" (P.I.O. 232/2004), Real 2026-11-14: Αρνούϊ (brief had "arnaoui")
+    local_confirmed: true
+    # V3 Fable feedback step 6 (audit GAPS A12): Cyprus morels were found at 500-600 m with
+    # Cistus, olive and Calabrian pine, and with strawberry tree on Troodos [LOI16, LOI16m].
+    # "Other broadleaf above 600 m" (the old rule) had no source. [S7] morels keep Other broadleaf.
+    # This makes the morel map wider and less sharp: that is what we know.
+    # Step 8: 6 = forest more than half burned, in the first two springs after the fire [LAR16].
+    trees: [1, 3, 4, 6]                             # [LOI16] Calabrian pine; Troodos broadleaf zone; other broadleaf
+    trees_text: "Calabrian pine, golden oak and other broadleaf trees; recently burned forest"
+    bands: [1, 2, 3]                                # [LOI16] finds at 500-600 m and on Troodos
+    altitude_text: "All altitudes"
+    months: [2, 3, 4]                               # [BRIEF] Mar-Apr, + Feb: GBIF Feb 2, Mar 13, Apr 24; finds 14-24 Feb [LOI16]
+    notes:
+      - "Morels are patchy and often follow a fire. Burned forest counts here for the first two springs after a fire (fires since 2018, from EFFIS satellite maps)."
+      - "\"Other broadleaf\" mixes deciduous and evergreen trees. Our map cannot tell them apart."   # [DRAFT]
+      - "This filter covers almost all forest (94% of the forest squares, measured 13 Nov 2026). For morels the map shows when conditions fit, not where: too few Cyprus finds are known to narrow it."   # audit fix 8, TODO S16
+    # Fact-check 2026-11-14: Cyprus sources say Morchella conica (PIO 2008, KYKPEE) or Morchella sp. (Dept of
+    # Forests); a 2016 DNA study confirmed 11 species [LOI16m]. Photos and record counts are for the whole genus.
+    inat: ["Morchella"]
+
+  - code: slu
+    latin: Suillus                                  # Real, 2026-11-13: the genus (was S. luteus [BRIEF])
+    common: slippery Jacks                          # [BRIEF] "slippery Jack", now plural for the genus
+    local: sfoungaras                               # Dept of Forests leaflet "Μανιτάρια της Κύπρου" (P.I.O. 232/2004), Real 2026-11-14: Σφουγκαράς, for Suillus granulatus (brief had "lartias")
+    local_confirmed: true
+    trees: [1, 2]                                   # [BRIEF] pine
+    trees_text: "Pine"
+    bands: [1, 2, 3]                                # [BRIEF] pine belt
+    altitude_text: "The pine belt"
+    months: [10, 11, 12, 1, 2]                      # [BRIEF] Oct-Jan, + Feb: 33 Suillus records Oct-Feb, peak Dec-Jan
+    notes: []
+    # Step 7 (audit GAPS G13): Cyprus has 0 public records of S. luteus, 5 of S. collinitus; the
+    # Dept of Forests lists S. collinitus and S. granulatus [NOTE]. Real chose (2026-11-13) to name
+    # the genus: "Slippery Jacks (Suillus)". Photos and record counts are for the whole genus.
+    inat: ["Suillus"]
