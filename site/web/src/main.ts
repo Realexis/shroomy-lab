@@ -24,6 +24,7 @@ import { countAction, countPage, mountCounter } from "./count";
 import { T } from "./i18n";
 import { mountLangSwitch } from "./ui/lang";
 import { PastFinds } from "./lab/finds";
+import { Pine15 } from "./lab/pine15";
 
 const abs = fileUrl;
 declare const __BUILD_ID__: string;                   // set by vite.config.ts, new for every build
@@ -169,6 +170,8 @@ async function main() {
   // LAB ONLY (Job 1): the "Past finds" layer and its filters.
   const finds = new PastFinds(map, abs("data/finds.json"), document.querySelector<HTMLElement>(".stage")!);
   map.addControl(finds.control(), "top-right");
+  // LAB ONLY (experiment 04): the squares the "15% forest if mostly pine" rule would add.
+  map.addControl(new Pine15(map, abs("data/lab_pine15.geojson"), document.querySelector<HTMLElement>(".stage")!).control(), "top-right");
 
   // ------------------------------------------------------------ the panel and the tapped square
   let picked: { i: number; lngLat: maplibregl.LngLat; small: GeoJSON.Geometry | null } | null = null;

@@ -80,3 +80,17 @@
 .fp-pager { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
 .fp-pager button { min-width: 44px; }
 .fp-pager button:disabled { opacity: 0.35; }
+
+/* LAB ONLY: experiment 04, the "Pine 15%" button and its note (src/lab/pine15.ts). */
+.pine15-sw { width: 12px; height: 12px; border-radius: 3px; background: #00b4d8; box-shadow: 0 0 0 1.5px #0077b6; display: inline-block; flex: none; }
+.ctrl-pine15.on { background: #0077b6; color: #fff !important; }
+.pine15-note {
+  position: absolute; z-index: 4; left: 8px; top: 8px; max-width: 240px; padding: 6px 10px;
+  background: var(--surface); color: var(--ink); border: 2px solid #00b4d8; border-radius: var(--radius-s);
+  box-shadow: var(--shadow); font-size: var(--fs-0); line-height: 1.35;
+}
+.pine15-note[hidden] { display: none; }
+.pine15-note strong { display: flex; align-items: center; gap: 6px; }
+.pine15-note span:last-child { color: var(--ink-soft); }
+:root:has(.pine15-note:not([hidden])) .map-legend { display: none; }
+@media (min-width: 900px) { .pine15-note { left: auto; right: 60px; top: auto; bottom: 28px; } :root:has(.pine15-note:not([hidden])) .map-legend { display: block; } }
