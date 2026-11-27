@@ -6,7 +6,7 @@
 No one publishes "searched, found nothing". So: the 261 people who record fungi in Cyprus on iNaturalist also record plants, birds, insects. A day one of them was **in the map's forest** = an **outing**.
 - **Found** = they recorded a tree-partner mushroom that day.
 - **Nothing** = they recorded other things in the forest, but no mushroom.
-Main test: only the **31 people who do record mushrooms** (so "nothing" likely means none seen). 61,700 public records downloaded (2022–26), Oct–Apr only.
+Main test: only the **31 people who do record mushrooms** (so "nothing" likely means none seen). 67,913 public records downloaded (2022–26), Oct–Apr only.
 Result: **185 outings: 25 found, 160 nothing.**
 
 ## What separates "found" from "nothing" days (win: 50% = coin toss)
