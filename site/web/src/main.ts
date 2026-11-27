@@ -25,6 +25,8 @@ import { T } from "./i18n";
 import { mountLangSwitch } from "./ui/lang";
 import { PastFinds } from "./lab/finds";
 import { Pine15 } from "./lab/pine15";
+import { BestAreas } from "./lab/areas";
+import { pmtiles as pmName } from "./map/files";
 
 const abs = fileUrl;
 declare const __BUILD_ID__: string;                   // set by vite.config.ts, new for every build
@@ -171,6 +173,8 @@ async function main() {
   const finds = new PastFinds(map, abs("data/finds.json"), document.querySelector<HTMLElement>(".stage")!);
   map.addControl(finds.control(), "top-right");
   // LAB ONLY (experiment 04): the squares the "15% forest if mostly pine" rule would add.
+  // LAB ONLY (experiment 07): "best areas this season" (season, altitude, shade; no daily weather).
+  map.addControl(new BestAreas(map, abs(pmName("data/lab_areas.pmtiles")), document.querySelector<HTMLElement>(".stage")!).control(), "top-right");
   map.addControl(new Pine15(map, abs("data/lab_pine15.geojson"), document.querySelector<HTMLElement>(".stage")!).control(), "top-right");
 
   // ------------------------------------------------------------ the panel and the tapped square

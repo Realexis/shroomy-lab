@@ -2,6 +2,7 @@
 // (data/lab_pine15.geojson, made by experiments/04-forest-edges/export_pine15.py). A map button shows
 // them in bright blue, with a short note. Not part of the score; nothing here goes live.
 import * as maplibregl from "maplibre-gl";
+import { labNotes } from "./notes";
 
 const SRC = "lab-pine15", FILL = "lab-pine15-fill", LINE = "lab-pine15-line";
 
@@ -13,11 +14,11 @@ export class Pine15 {
 
   constructor(private map: maplibregl.Map, private dataUrl: string, stage: HTMLElement) {
     this.note = document.createElement("div");
-    this.note.className = "pine15-note";
+    this.note.className = "lab-note pine15-note";
     this.note.hidden = true;
     this.note.innerHTML = `<strong><span class="pine15-sw" aria-hidden="true"></span>Lab test: new pine squares</strong>
       <span>15–25% forest, mostly pine. The live map leaves these out (it needs 25%); the lab map now scores them. 3,040 squares, 190 km². Not live.</span>`;
-    stage.append(this.note);
+    labNotes(stage).append(this.note);
   }
 
   control(): maplibregl.IControl {

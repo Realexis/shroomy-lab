@@ -84,13 +84,26 @@
 /* LAB ONLY: experiment 04, the "Pine 15%" button and its note (src/lab/pine15.ts). */
 .pine15-sw { width: 12px; height: 12px; border-radius: 3px; background: #00b4d8; box-shadow: 0 0 0 1.5px #0077b6; display: inline-block; flex: none; }
 .ctrl-pine15.on { background: #0077b6; color: #fff !important; }
-.pine15-note {
-  position: absolute; z-index: 4; left: 8px; top: 8px; max-width: 240px; padding: 6px 10px;
-  background: var(--surface); color: var(--ink); border: 2px solid #00b4d8; border-radius: var(--radius-s);
-  box-shadow: var(--shadow); font-size: var(--fs-0); line-height: 1.35;
+/* LAB ONLY: the lab layers' notes stack at the top left (src/lab/notes.ts). */
+.lab-notes { position: absolute; z-index: 4; left: 8px; top: 8px; display: flex; flex-direction: column; gap: 6px; max-width: 250px; pointer-events: none; }
+.lab-note {
+  pointer-events: auto; padding: 6px 10px; background: var(--surface); color: var(--ink); border: 2px solid #00b4d8;
+  border-radius: var(--radius-s); box-shadow: var(--shadow); font-size: var(--fs-0); line-height: 1.35;
 }
-.pine15-note[hidden] { display: none; }
-.pine15-note strong { display: flex; align-items: center; gap: 6px; }
-.pine15-note span:last-child { color: var(--ink-soft); }
-:root:has(.pine15-note:not([hidden])) .map-legend { display: none; }
-@media (min-width: 900px) { .pine15-note { left: auto; right: 60px; top: auto; bottom: 28px; } :root:has(.pine15-note:not([hidden])) .map-legend { display: block; } }
+.lab-note[hidden] { display: none; }
+.lab-note strong { display: flex; align-items: center; gap: 6px; }
+.lab-note > span { color: var(--ink-soft); display: block; }
+.areas-note { border-color: #ffa040; }
+.areas-sw { width: 12px; height: 12px; border-radius: 3px; background: linear-gradient(90deg, #3e6b57, #e3c24a, #ff5a36); display: inline-block; flex: none; }
+.ctrl-areas.on { background: #8a5d00; color: #fff !important; }
+.areas-bar { height: 10px; border-radius: 5px; margin-top: 6px; }
+.areas-scale { display: flex; justify-content: space-between; color: var(--ink-soft); }
+.areas-months { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.areas-months button { font: inherit; font-weight: 700; min-height: 30px; padding: 3px 8px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: transparent; color: var(--ink-soft); }
+.areas-months button[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); border-color: var(--ink); }
+:root:has(.lab-note:not([hidden])) .map-legend { display: none; }
+@media (min-width: 900px) {
+  .lab-notes { left: auto; right: 60px; top: auto; bottom: 28px; }
+  :root:has(.lab-note:not([hidden])) .map-legend { display: block; }
+}

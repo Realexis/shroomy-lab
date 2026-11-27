@@ -150,3 +150,4 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - 15% pine squares: lab forest vs live forest barely changes the tests (+3 finds caught).
 - **Ranking:** 1. best areas this season (low–medium), 2. cooler + no gate + 2× shade (low–medium), 3. keep 15% pine in the lab (low). No change: rain timing, WorldCover, other broadleaf, habitat × weather.
 - Scripts: `backtest.py` and `outings.py` now take `--habitat=live`, backtest also `--late`. Nothing changed on the live site.
+- **Best areas button** on the lab map (Real: "Yes, add to lab", 27 Nov): `experiments/07-rethink/export_areas.py` → `lab_areas.pmtiles`. 39,710 lab forest squares, ranked per month (Oct–Apr) by season × altitude + shade only; colours = rank vs other forest that month, not conditions. In Nov all altitude bands have the same season value, so Nov = shade ranking; Dec/Jan/Feb also rank by altitude band. Published to the phone copy (with finds). Lab only.
