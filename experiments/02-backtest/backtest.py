@@ -44,6 +44,27 @@ S = config.load("scoring")["score"]
 WEIGHTS = S["weights"]
 
 
+# Which finds count (Real's OK, 27 Nov 2026; reasons in reports/backtest-groups.md).
+KEEP = {"Suillus", "Lactarius", "Pisolithus", "Russula", "Hygrophorus", "Rhizopogon", "Inocybe", "Clavulina",
+        "Clavariadelphus", "Morchella", "Laccaria", "Tricholoma", "Ramaria", "Telamonia", "Cortinarius", "Chroogomphus",
+        "Thelephora", "Xerocomellus", "Astraeus", "Amanita", "Scleroderma", "Leccinellum", "Sarcodon", "Gyrodon",
+        "Hygrocybe", "Pseudosperma", "Sebacina"}
+GROUND = {"Agaricus", "Volvopluteus", "Lycoperdon", "Battarrea", "Coprinus", "Candolleomyces", "Agrocybe", "Conocybe",
+          "Colus", "Coprinellus", "Collybia", "Mycena", "Lepiota", "Geastrum", "Galerina", "Psathyrella", "Saproamanita",
+          "Cyathus", "Disciseda", "Melanoleuca", "Bovista", "Tulostoma", "Lepista", "Zhuliangomyces", "Clitocybe",
+          "Myriostoma", "Marasmius", "Leucocalocybe", "Crinipellis", "Collybiopsis", "Paralepista", "Leucoagaricus",
+          "Dissingia", "Helvella", "Plicaria", "Clathrus", "Leucocoprinus", "Lyophyllum", "Coprinopsis", "Montagnea",
+          "Parasola", "Geopora", "Sarcosphaera", "Geopyxis", "Macrolepiota"}
+TARGET = ("Lactarius deliciosus", "Lactarius sanguifluus", "Russula delica", "Tricholoma caligatum", "Morchella", "Suillus")
+GROUPS = {
+    "main": lambda r: (r["name"] or "").split(" ")[0] in KEEP,
+    "target": lambda r: (r["name"] or "").startswith(TARGET),
+    "ground": lambda r: (r["name"] or "").split(" ")[0] in GROUND,
+    "all": lambda r: True,                       # every mushroom-group find (footnote only)
+}
+LOOSE = "--loose" in sys.argv                 # side check: also spots known to within 2 km
+GROUP = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--group=")), "main")
+
 # ------------------------------------------------------------------ habitat
 def habitat():
     with rasterio.open(config.PROCESSED / "habitat_250m.tif") as s:
@@ -66,8 +87,9 @@ def find_events():
     recs = json.load(open(LAB / "data/finds/finds.json"))["records"]
     keep, dropped = [], defaultdict(int)
     for r in recs:
-        if r["group"] != "mushroom": continue
-        if r["loc"] != "good" or not r["date"] or len(r["date"]) != 10: dropped["rough spot or no exact day"] += 1; continue
+        if r["group"] != "mushroom" or not GROUPS[GROUP](r): continue
+        rough_ok = LOOSE and r["loc"] == "rough" and r["acc_m"] is not None and r["acc_m"] <= 2000
+        if (r["loc"] != "good" and not rough_ok) or not r["date"] or len(r["date"]) != 10: dropped["rough spot or no exact day"] += 1; continue
         d = date.fromisoformat(r["date"])
         season = d.year if d.month >= 8 else d.year - 1
         if season < 2022: dropped["before the 2022-23 season (no weather from the live model)"] += 1; continue
@@ -165,7 +187,7 @@ def main():
     keep, events, dropped = find_events()
     have = {int(p.stem.split("_")[1]) for p in W.glob("season_*.npz")}
     if "--partial" in sys.argv: events = [e for e in events if e["season"] in have]
-    print(f"{len(keep)} finds -> {len(events)} find events; left out: {dropped}")
+    print(f"[{GROUP}{' loose' if LOOSE else ''}] {len(keep)} finds -> {len(events)} find events; left out: {dropped}")
 
     land_r, land_c = np.nonzero(hab["land_fraction"] > 0.5)
     pick = RNG.choice(len(land_r), N_POOL, replace=False)
@@ -231,7 +253,7 @@ def main():
         seasons=dict(sorted(defaultdict(int, {}).items())),
     )
     for f in facts: summary["seasons"][str(f["date"][:7])] = summary["seasons"].get(str(f["date"][:7]), 0) + 1
-    json.dump(dict(summary=summary, table=table, events=facts), open(LAB / "experiments/02-backtest/results.json", "w"), indent=1)
+    json.dump(dict(summary=summary, table=table, events=facts), open(LAB / f"experiments/02-backtest/results_{GROUP}{'_loose' if LOOSE else ''}.json", "w"), indent=1)
 
     print(json.dumps(summary, indent=1))
     for subset, t_ in table.items():
