@@ -42,7 +42,7 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 **Removed (and why)**
 - 3,269 GBIF **DNA samples** from soil/sea: nobody saw a mushroom.
 - 314 GBIF copies of iNaturalist records (same record twice).
-- 546 near duplicates: same name, same day, within 200 m (mostly several herbarium sheets of one collection).
+- 546 near duplicates: same name, same day, within 200 m (likely several sheets or photos of one find; not checked one by one).
 - 10 iNaturalist "casual" records (no date, captive or no photo).
 
 **Result: 2,356 records, 753 names**
@@ -65,5 +65,5 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 
 **Limits**
 - Most records are lichens; only 294 mushroom records are good enough to test the map with.
-- Records cluster where people walk (trails, picnic sites), not where mushrooms are most common.
+- Records likely cluster where people walk (trails, picnic sites), not where mushrooms are most common (not measured yet; Job 2 will need to allow for it).
 - District borders are simplified, so 128 coastal points fall "outside" any district.
