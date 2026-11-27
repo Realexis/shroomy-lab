@@ -67,3 +67,13 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Most records are lichens; only 294 mushroom records are good enough to test the map with.
 - Records likely cluster where people walk (trails, picnic sites), not where mushrooms are most common (not measured yet; Job 2 will need to allow for it).
 - District borders are simplified, so 128 coastal points fall "outside" any district.
+
+---
+
+## 2026-11-27 — Job 2 PREVIEW (low confidence, 1 season only)
+- Asked by Real mid-download. Weather ready for season 2022-23 only → **12 find events** (7 inside the map's forest).
+- Finds beat random land squares 63% of the time (inside the map's forest: 82%) → the forest/habitat filter does the work.
+- Finds did **not** beat random forest squares on the same day (20%; inside forest 33%) or their own spot on other days (35% / 25%).
+- 9 of 12 events are April 2023 (spring); 5 of 12 sit outside the map's forest (incl. a *Suillus*, a pine partner, scored 0).
+- "Mushroom" group includes brackets on wood (*Laetiporus*, *Phellinus*), which may not follow rain the same way.
+- Nothing changed in the scoring or layers. Full test follows when the download ends.
