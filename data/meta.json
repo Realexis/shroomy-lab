@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-27T05:11+00:00",
+ "generated_utc": "2026-11-27T14:38+00:00",
  "weather_run": "2026-11-27",
  "model": "ecmwf_ifs",
  "days": [
@@ -88,7 +88,7 @@
   "opens": 18,
   "later_opens": 2,
   "closes": 20,
-  "counted_from": "2026-10-12",
+  "counted_from": "2026-10-27",
   "soak_mm": 20
  },
  "weights": {
