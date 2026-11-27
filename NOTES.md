@@ -106,3 +106,13 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - 6 re-timed scores: best (rain 30–60 d + gate 10 mm over 60 d) +5–7 points on the main group, but not on held-back seasons 2025–26 and not on all mushrooms → noise.
 - **Decision: don't change the rain part.** Weather signal too weak to see with this data. Next: forest edges (recommendation 3).
 - Idea for later (Real's call): collect dated finds + "searched, nothing" days to tune weather properly.
+
+---
+
+## 2026-11-27 — Experiment 04: forest edges → `reports/EXP04-FOREST-EDGES.md`
+- Finds from all years (exact spot), no weather. Main group 45 events, target 16, all mushrooms 209, ground 86.
+- Live forest catches 64% of main finds on 25.8% of the land (lift 2.5).
+- **"15% forest if mostly pine"**: 71% caught for +190 km² (lift stays 2.5); target species 69% → 81%. Best trade-off. Low confidence (2–3 finds).
+- Edges (250 / 500 m) and WorldCover catch a few more but mark ~1,000–1,500 km² more land → map less sharp. Not recommended.
+- Other broadleaf: +3 main finds for +340 km², no target gain. Not now.
+- **Decision: none yet.** Possible next step (Real's call): show "15% if mostly pine" on the lab map to look at the new squares.
