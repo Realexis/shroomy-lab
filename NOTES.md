@@ -26,4 +26,6 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Big map files are **not** in the source branch (`main`); only the built `gh-pages` branch carries them.
 - Empty folders ready: `data/finds/`, `experiments/`, `reports/`.
 
+- Checked both addresses: map with today's colours, safety banner, 112 · 1401 button and "Lab" badge all show. Phone copy has noindex.
+
 **Open question for Job 1:** finds on the phone copy (public link) or local only? Ask Real before publishing any find locations.
