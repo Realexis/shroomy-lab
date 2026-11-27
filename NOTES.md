@@ -77,3 +77,22 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - 9 of 12 events are April 2023 (spring); 5 of 12 sit outside the map's forest (incl. a *Suillus*, a pine partner, scored 0).
 - "Mushroom" group includes brackets on wood (*Laetiporus*, *Phellinus*), which may not follow rain the same way.
 - Nothing changed in the scoring or layers. Full test follows when the download ends.
+
+---
+
+## 2026-11-27 — Job 2: back-test done → `reports/BACKTEST-REPORT.md`
+**What we did**
+- Past weather from the **live model** (ECMWF IFS 9 km, Open-Meteo historical forecast), 128 points (0.1°), seasons 2022–26. 3,880 calls, paced ≤1,500/hour so the live robot's allowance stayed safe.
+- Groups agreed with Real (`reports/backtest-groups.md`): **main** = tree-partner mushrooms + target species (45 finds → 36 events). Side: target species (12 events), ground decomposers (64), spot within 2 km (37), all mushrooms (156, footnote).
+- Each find vs random land (same day), random open forest (same day), same spot on other days. Variants: each layer off, no gate, no habitat filter, other broadleaf counted, WorldCover 2021 forest, habitat × weather.
+- Fires count only if they burned **before** the find (the live code marks all fires since 2018; fine for today's map, wrong for the past).
+- Scripts: `experiments/02-backtest/` (fetch_weather, worldcover, backtest, diagnose).
+
+**Result (main group)**
+- Forest part works: finds beat random land 69% (inside the map's forest 84%).
+- Weather part does not (yet): vs random forest 27% / 40%, vs other days 45% / 43% (50% = coin toss).
+- Temperature is 1.0 on almost every winter day → tells nothing. Water gate is lower on find days (0.59 vs 0.77).
+- WorldCover 2021: no better (same 24/36 finds inside, more non-forest land marked forest). Habitat × weather: no change.
+- 12 of 36 events outside the map's forest: 7 in squares <25% forest, 3 "other broadleaf", 2 closed reserves.
+
+**Decisions**: none yet. Nothing changed in the live site or its scoring. Next ideas (Real decides): re-time rain (30–60 days, smaller soak), narrower temperature band, forest edges.

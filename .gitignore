@@ -17,3 +17,6 @@ data/finds/*
 # Job 2 downloads (weather, WorldCover) and trial results: rebuilt by the scripts
 experiments/02-backtest/weather/
 experiments/02-backtest/results_*.json
+experiments/02-backtest/log_*.txt
+experiments/02-backtest/diagnose_*.json
+experiments/02-backtest/results.json
