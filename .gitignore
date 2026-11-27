@@ -10,3 +10,7 @@ private/
 *.env
 .env*
 static_key*
+# Job 1 finds: public records, but kept off this PUBLIC repo until Real decides (see NOTES.md). Rebuild with
+# experiments/01-past-finds/fetch_finds.py then enrich_finds.py.
+data/finds/*
+!data/finds/.gitkeep

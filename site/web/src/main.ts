@@ -23,6 +23,7 @@ import { FullMap, readUrlView, trackMapReady } from "./ui/fullmap";
 import { countAction, countPage, mountCounter } from "./count";
 import { T } from "./i18n";
 import { mountLangSwitch } from "./ui/lang";
+import { PastFinds } from "./lab/finds";
 
 const abs = fileUrl;
 declare const __BUILD_ID__: string;                   // set by vite.config.ts, new for every build
@@ -165,6 +166,9 @@ async function main() {
   const fullMap = new FullMap(map, { before: () => hideTip(), after: () => fitCyprus(), busy: mapBusy });
   map.addControl(fullMap, "top-right");
   if (urlView.full) fullMap.set(true, false);
+  // LAB ONLY (Job 1): the "Past finds" layer and its filters.
+  const finds = new PastFinds(map, abs("data/finds.json"), document.querySelector<HTMLElement>(".stage")!);
+  map.addControl(finds.control(), "top-right");
 
   // ------------------------------------------------------------ the panel and the tapped square
   let picked: { i: number; lngLat: maplibregl.LngLat; small: GeoJSON.Geometry | null } | null = null;
@@ -253,6 +257,7 @@ async function main() {
 
   /** Open the card of the square under this point (or close the card if there is none). */
   const pick = (point: maplibregl.Point, lngLat: maplibregl.LngLat) => {
+    if (finds.tap(point)) return;                       // Lab: a tapped find dot opens its record, not the square
     if (panel.mode !== "conditions" || !map.getLayer("cells-fill")) return;
     const f = map.queryRenderedFeatures(point, { layers: ["cells-fill"] })[0];
     if (!f) { panel.closeCard(); return; }

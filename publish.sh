@@ -13,6 +13,9 @@ DIST="$LAB/site/web/dist"
 grep -q 'name="robots" content="noindex' "$DIST/index.html" || { echo "no noindex, stopping"; exit 1; }
 if find "$DIST" -iname "*private*" -o -iname "static_key*" -o -name CNAME | grep -q .; then
   echo "private file or CNAME in the build, stopping"; exit 1; fi
+# Past finds (Job 1) go to the public phone copy only when Real said yes: run with PUBLISH_FINDS=1.
+if [ "${PUBLISH_FINDS:-0}" != "1" ] && [ -e "$DIST/data/finds.json" ]; then
+  rm -f "$DIST/data/finds.json"; echo "finds left out of the phone copy (PUBLISH_FINDS=1 to include them)"; fi
 
 if [ ! -d "$OUT/.git" ]; then
   if git ls-remote --exit-code --heads "$TARGET" gh-pages >/dev/null 2>&1; then
