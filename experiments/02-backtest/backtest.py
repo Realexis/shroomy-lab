@@ -132,8 +132,9 @@ def habitat_quality(hab, rows, cols, ok):
     return ok * F.ramp(forest, 0.25, 0.75) * (0.5 + 0.5 * shade)
 
 
-def variants(f, gate, hab, rows, cols, on):
+def variants(f_all, gate, hab, rows, cols, on):
     """Every score variant for the given squares on day `on` (f = the six factors, gate = water gate)."""
+    f = {k: f_all[k] for k in FACTORS}
     ok = tree_ok(hab, rows, cols, on)
     out = {"live score": F.combine(f, WEIGHTS, ok) * gate}
     for k in FACTORS:
@@ -148,6 +149,10 @@ def variants(f, gate, hab, rows, cols, on):
     hq = habitat_quality(hab, rows, cols, ok)
     out["habitat x weather x season"] = 100 * hq * weather * f["season_altitude"]
     out["habitat x weather"] = 100 * hq * weather
+    # Experiment 06 tweak (picked on the "found vs out-but-nothing" outings): cooler best band, no gate, 2x shade.
+    tc = {**S["temperature"], "zero_at_c": 2, "best_from_c": 6, "best_to_c": 13, "zero_again_c": 20}
+    f2 = {**f, "temperature": F.temperature_factor(f_all["_t7"], f_all["_frost"], tc)}
+    out["cooler + no gate + 2x shade"] = F.combine({k: f2[k] for k in FACTORS}, {**WEIGHTS, "shade": WEIGHTS["shade"] * 2}, ok)
     return out
 
 
@@ -155,7 +160,8 @@ def score_cells(w, interp, hab, rows, cols, t, on, clim):
     elev = np.nan_to_num(hab["elevation_m"][rows, cols])
     band = hab["altitude_band"][rows, cols].astype(int)
     shade = hab["shade_score"][rows, cols]
-    f, _ = day_factors(S, w, t, interp, elev, band, shade, on.month, clim)
+    f, inp = day_factors(S, w, t, interp, elev, band, shade, on.month, clim)
+    f = {**f, "_t7": inp["t7_mean_c"], "_frost": inp["frost_days"]}
     gate, _, _ = water_gate(S, interp(w["precip"][:, : t + 1]), t)
     return variants(f, gate, hab, rows, cols, on)
 

@@ -128,3 +128,14 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Backup of the live-copy habitat and map data: `experiments/05-pine15-score/backup/` (local only). To undo: copy them back.
 - Published to the phone copy (with finds). **The lab map data does not update by itself**: it stays on 27 Nov weather until rebuilt by hand.
 - Nothing changed on the live site.
+
+---
+
+## 2026-11-27 — Looking for more data + Experiment 06 → `reports/EXP06-OUTINGS.md`
+- Real: "you need to look for that" / "work with what we have".
+- Other sources checked: Mushroom Observer (15 Cyprus records, all Jan 2012), Observation.org (3 fungi via GBIF), bolete paper Loizides et al. 2019 (CC BY, no dated records; 30 survey sites 2007–17). → nothing usable to add.
+- Built "outings" from 61.7k public iNaturalist records of the 261 fungi recorders (2022–26): 185 forest outings by 31 mushroom recorders, 25 found / 160 nothing.
+- Live score does not separate them (48%). Found days: cooler (11.7 vs 13.6 °C), smaller recent big rain (12.5 vs 16.3 mm), shadier, higher.
+- Tweak "cooler band 6–13 °C + no water gate + 2× shade": outings 61%; back-test main (lab forest) 51% / 52% (was 41% / 44%). Held-back 2025–26: 58% vs 55% (7 finds).
+- Note: from experiment 05 on, the back-test reads the LAB habitat (with the 15% pine squares).
+- **Decision: none yet** (Real's call whether the tweak goes into the lab score).
