@@ -139,3 +139,14 @@ The R&D copy of ShroomyMap (a map of mushroom growing **conditions**, not of whe
 - Tweak "cooler band 6–13 °C + no water gate + 2× shade": outings 61%; back-test main (lab forest) 51% / 52% (was 41% / 44%). Held-back 2025–26: 58% vs 55% (7 finds).
 - Note: from experiment 05 on, the back-test reads the LAB habitat (with the 15% pine squares).
 - **Decision: none yet** (Real's call whether the tweak goes into the lab score).
+
+---
+
+## 2026-11-27 — Experiment 07: rethink and clean-up → `reports/RETHINK-SUMMARY.md`
+- Real's brief: review, archive, pick the right data (keep/drop/unsure), change nothing without evidence, existing data only, top 3 changes tested.
+- **Archived** (`archive/`, nothing deleted): rain-timing experiment + report, WorldCover script + data, old results/logs.
+- Contest on all tests (live forest): **"best areas this season" (season × altitude + shade, no daily weather)**: vs random forest 54% (live 40%), vs land 88% (84%), other days 49% (43%), outings 61% (46%), held-back outings 67% (49%, 6 finds). Held-back back-test mixed (spots worse, days better; 6–7 finds).
+- Cooler + no gate + 2× shade: 50% / 87% / 51% / 59% / 52%.
+- 15% pine squares: lab forest vs live forest barely changes the tests (+3 finds caught).
+- **Ranking:** 1. best areas this season (low–medium), 2. cooler + no gate + 2× shade (low–medium), 3. keep 15% pine in the lab (low). No change: rain timing, WorldCover, other broadleaf, habitat × weather.
+- Scripts: `backtest.py` and `outings.py` now take `--habitat=live`, backtest also `--late`. Nothing changed on the live site.

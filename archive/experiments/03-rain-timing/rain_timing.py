@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-LAB = Path(__file__).resolve().parents[2]
+LAB = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(LAB / "experiments/02-backtest"))
 import backtest as B                                           # noqa: E402
 from shroomy.score.downscale import Interpolator              # noqa: E402
@@ -130,7 +130,7 @@ def main():
               f"    C {row['C']['all'][0]*100:4.0f} ({row['C']['diff'][0]*100:+3.0f}) |{fmt(row['C']['early'])} |{fmt(row['C']['late'])}")
     print(f"\nevents per season group: 2022-24 = {int((seas <= 2024).sum())}, 2025-26 = {int((seas >= 2025).sum())}")
     out["events_list"] = used
-    json.dump(out, open(LAB / f"experiments/03-rain-timing/results_{B.GROUP}.json", "w"), indent=1)
+    json.dump(out, open(LAB / f"archive/results/rain_timing_{B.GROUP}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,62 @@
+[main] 16 finds -> 14 find events; left out: {'rough spot or no exact day': 51, 'before the 2022-23 season (no weather from the live model)': 4, 'May-September (outside the scored season)': 5}
+  season 2025: 7 events done
+  season 2026: 7 events done
+{
+ "finds": 16,
+ "events": 14,
+ "dropped": {
+  "rough spot or no exact day": 51,
+  "before the 2022-23 season (no weather from the live model)": 4,
+  "May-September (outside the scored season)": 5
+ },
+ "in_habitat": 6,
+ "in_worldcover": 8,
+ "live_median_at_finds": 0.0,
+ "live_median_random_forest": 70.49879006914833,
+ "fair_or_better_at_finds": 4,
+ "seasons": {
+  "2025-12": 4,
+  "2026-01": 2,
+  "2026-04": 1,
+  "2026-10": 2,
+  "2026-11": 5
+ }
+}
+
+== all finds (n=14)
+variant                                             A.                      B.                      C.
+live score                      27.8 (10.4-47.0)         59.9 (45.3-73.1)         45.5 (36.5-54.6)       
+without rain total              28.2 (11.6-47.3) +0.4   60.1 (47.1-74.0) +0.1   47.6 (38.6-57.0) +2.1 
+without rain pulse              28.6 (12.4-47.5) +0.9   60.1 (45.3-74.0) +0.2   46.0 (36.1-57.1) +0.5 
+without temperature             27.2 (10.0-46.0) -0.6   59.8 (45.4-74.9) -0.2   45.4 (36.6-54.7) -0.0 
+without soil moisture           27.6 (10.1-47.8) -0.2   59.9 (46.2-72.6) -0.0   44.2 (36.0-51.4) -1.3 
+without season altitude         27.6 (11.6-44.4) -0.2   59.9 (45.3-73.1) -0.0   45.6 (36.1-54.7) +0.1 
+without shade                   26.7 (11.1-43.8) -1.1   59.6 (47.6-72.9) -0.3*  45.5 (35.9-54.8) +0.0 
+without water gate              25.0 ( 8.7-42.8) -2.8*  59.0 (45.4-73.1) -0.9*  44.9 (34.4-54.5) -0.6 
+without habitat filter          57.9 (43.5-73.0)+30.1*  62.9 (48.4-76.6) +3.0   49.2 (33.2-64.2) +3.7 
+other broadleaf counts          34.6 (16.1-55.8) +6.8   62.7 (49.7-77.0) +2.8   45.9 (36.8-55.2) +0.5 
+WorldCover 2021 forest          39.0 (21.3-56.1)+11.2*  64.7 (51.2-79.3) +4.8   50.2 (39.0-62.0) +4.7 
+habitat x weather x season      25.5 ( 8.9-44.7) -2.2   59.1 (46.3-72.3) -0.8   44.5 (35.3-54.7) -1.0 
+habitat x weather               25.9 ( 9.8-44.3) -1.9   59.3 (45.5-72.3) -0.7   45.7 (37.0-54.3) +0.3 
+areas only (season + shade)     24.6 ( 9.8-43.3) -3.1   59.0 (46.6-72.6) -1.0   51.0 (46.9-56.1) +5.5 
+cooler + no gate + 2x shade     30.8 (13.3-50.9) +3.0*  60.5 (45.4-74.6) +0.6*  47.6 (37.5-58.3) +2.2 
+
+== finds inside the map's forest (n=6)
+variant                                             A.                      B.                      C.
+live score                      62.6 (43.0-81.9)         90.5 (85.4-95.1)         39.4 (21.7-61.0)       
+without rain total              63.5 (42.5-82.6) +0.9   90.8 (85.6-95.8) +0.3   44.3 (22.6-65.6) +4.9*
+without rain pulse              64.6 (44.6-83.8) +2.0   91.0 (85.0-95.8) +0.5   40.6 (18.9-67.0) +1.2 
+without temperature             61.2 (39.6-80.4) -1.4   90.1 (84.1-95.1) -0.4   39.3 (20.2-61.0) -0.1 
+without soil moisture           62.1 (41.9-79.6) -0.5   90.4 (85.5-95.0) -0.1   36.4 (20.3-56.2) -3.0 
+without season altitude         62.1 (45.1-78.4) -0.5   90.4 (86.1-94.6) -0.1   39.7 (21.8-61.0) +0.3 
+without shade                   60.1 (40.7-76.6) -2.5*  89.7 (84.7-93.8) -0.8*  39.5 (20.6-60.8) +0.1 
+without water gate              56.1 (30.1-78.3) -6.5*  88.3 (81.9-94.5) -2.2*  38.1 (16.0-63.1) -1.3 
+without habitat filter          61.4 (40.2-79.8) -1.2*  68.8 (48.8-86.8)-21.7*  39.4 (20.9-61.3) +0.0 
+other broadleaf counts          62.6 (43.2-81.9) +0.0   88.7 (83.2-94.3) -1.8*  39.4 (20.3-62.0) +0.0 
+WorldCover 2021 forest          64.7 (45.1-82.0) +2.1*  88.4 (80.8-94.9) -2.1*  39.4 (20.5-61.0) +0.0 
+habitat x weather x season      57.3 (32.6-81.3) -5.2   88.6 (81.9-95.0) -1.9   37.1 (16.4-59.4) -2.3 
+habitat x weather               58.2 (35.7-81.9) -4.3   89.0 (82.9-95.0) -1.6   40.0 (21.4-62.5) +0.6 
+areas only (season + shade)     55.3 (31.9-77.6) -7.3   88.2 (81.9-93.9) -2.3   52.3 (42.8-64.2)+12.9 
+cooler + no gate + 2x shade     69.7 (52.1-86.0) +7.1*  91.9 (87.2-96.5) +1.3*  44.5 (21.7-69.6) +5.1 
+
+* = the change is bigger than the noise (95% range of the difference does not include 0)

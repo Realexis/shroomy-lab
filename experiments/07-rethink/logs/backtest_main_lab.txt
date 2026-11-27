@@ -1,0 +1,75 @@
+[main] 45 finds -> 36 find events; left out: {'rough spot or no exact day': 51, 'before the 2022-23 season (no weather from the live model)': 4, 'May-September (outside the scored season)': 5}
+  season 2022: 3 events done
+  season 2023: 14 events done
+  season 2024: 5 events done
+  season 2025: 7 events done
+  season 2026: 7 events done
+{
+ "finds": 45,
+ "events": 36,
+ "dropped": {
+  "rough spot or no exact day": 51,
+  "before the 2022-23 season (no weather from the live model)": 4,
+  "May-September (outside the scored season)": 5
+ },
+ "in_habitat": 25,
+ "in_worldcover": 24,
+ "live_median_at_finds": 21.934619106984584,
+ "live_median_random_forest": 51.05032946819306,
+ "fair_or_better_at_finds": 10,
+ "seasons": {
+  "2022-12": 1,
+  "2023-04": 2,
+  "2023-11": 2,
+  "2023-12": 4,
+  "2024-01": 2,
+  "2024-02": 3,
+  "2024-03": 3,
+  "2024-11": 1,
+  "2025-01": 3,
+  "2025-02": 1,
+  "2025-12": 4,
+  "2026-01": 2,
+  "2026-04": 1,
+  "2026-10": 2,
+  "2026-11": 5
+ }
+}
+
+== all finds (n=36)
+variant                                             A.                      B.                      C.
+live score                      29.4 (20.8-38.3)         68.9 (62.1-76.2)         46.0 (38.7-53.2)       
+without rain total              29.4 (20.8-38.7) -0.0   68.9 (61.9-75.5) +0.0   46.9 (39.7-54.0) +0.9 
+without rain pulse              29.7 (20.3-38.5) +0.3   69.0 (61.2-75.9) +0.1   46.3 (39.1-53.4) +0.3 
+without temperature             30.9 (21.7-40.4) +1.5   69.3 (61.7-76.6) +0.4   45.6 (38.6-53.0) -0.4 
+without soil moisture           30.0 (21.2-38.6) +0.6   69.1 (61.2-76.4) +0.2   45.2 (38.4-51.7) -0.8 
+without season altitude         29.5 (21.1-38.6) +0.2   69.0 (61.3-76.0) +0.1   46.1 (39.2-52.7) +0.1 
+without shade                   28.4 (20.0-36.5) -1.0*  68.6 (61.6-76.0) -0.3*  46.1 (39.9-53.5) +0.1 
+without water gate              31.3 (21.6-40.6) +2.0   69.4 (61.7-77.5) +0.5   48.5 (41.9-55.4) +2.5 
+without habitat filter          45.2 (36.7-54.5)+15.8*  46.6 (37.3-56.7)-22.3*  47.8 (39.1-56.4) +1.7 
+other broadleaf counts          37.1 (27.7-46.9) +7.7   71.8 (64.5-78.6) +2.9   47.3 (39.8-55.1) +1.3 
+WorldCover 2021 forest          33.7 (25.5-42.7) +4.3   64.9 (57.4-72.1) -4.0   46.7 (39.8-53.6) +0.7 
+habitat x weather x season      32.6 (23.3-42.2) +3.3   68.6 (60.5-75.9) -0.3   45.4 (38.3-52.1) -0.6 
+habitat x weather               32.7 (23.6-41.6) +3.3   68.6 (59.7-76.0) -0.3   45.8 (39.8-52.1) -0.2 
+areas only (season + shade)     39.1 (28.9-50.2) +9.8*  71.7 (63.9-79.5) +2.8*  50.2 (45.0-55.8) +4.2 
+cooler + no gate + 2x shade     35.8 (26.4-46.9) +6.5*  70.7 (62.9-78.4) +1.8*  51.3 (44.4-58.0) +5.3*
+
+== finds inside the map's forest (n=25)
+variant                                             A.                      B.                      C.
+live score                      41.5 (32.2-51.2)         83.4 (80.5-86.5)         44.3 (34.6-54.1)       
+without rain total              41.4 (31.4-51.2) -0.0   83.4 (80.6-86.2) +0.0   45.5 (36.0-56.1) +1.2 
+without rain pulse              41.9 (32.3-52.4) +0.4   83.5 (80.7-86.4) +0.1   44.7 (34.8-55.6) +0.5 
+without temperature             43.6 (34.7-53.6) +2.2   84.0 (81.4-86.8) +0.6   43.7 (33.2-54.3) -0.5 
+without soil moisture           42.3 (33.1-53.1) +0.9   83.6 (80.7-86.6) +0.2   43.1 (33.7-53.4) -1.2 
+without season altitude         41.7 (32.2-50.8) +0.2   83.5 (80.8-86.2) +0.1   44.4 (35.6-54.9) +0.1 
+without shade                   40.0 (30.9-49.2) -1.5*  82.9 (80.3-85.5) -0.5*  44.4 (34.6-54.8) +0.2 
+without water gate              44.3 (33.5-55.7) +2.8   84.1 (81.0-87.5) +0.8   47.8 (38.4-57.1) +3.5 
+without habitat filter          39.1 (29.4-48.6) -2.3*  39.0 (29.8-49.8)-44.3*  44.3 (34.6-55.1) +0.0 
+other broadleaf counts          41.5 (32.4-50.5) +0.0   80.7 (77.8-83.8) -2.7*  44.3 (33.1-54.7) +0.0 
+WorldCover 2021 forest          42.8 (33.7-51.1) +1.4   76.4 (70.5-81.3) -7.0*  43.6 (33.8-53.4) -0.7 
+habitat x weather x season      44.7 (34.8-55.2) +3.3   82.5 (77.8-86.7) -0.9   43.4 (33.3-53.7) -0.9 
+habitat x weather               44.8 (35.6-54.5) +3.3   82.5 (77.3-86.7) -0.8   44.0 (34.7-53.4) -0.3 
+areas only (season + shade)     55.5 (43.4-67.5)+14.0*  87.4 (84.0-90.8) +4.1*  50.3 (42.2-58.3) +6.0 
+cooler + no gate + 2x shade     50.7 (39.9-61.6) +9.3*  85.9 (82.8-89.1) +2.5*  51.9 (42.3-62.8) +7.6*
+
+* = the change is bigger than the noise (95% range of the difference does not include 0)

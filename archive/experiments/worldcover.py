@@ -2,7 +2,7 @@
 ESA WorldCover 2021 (10 m, CC BY 4.0, (c) ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021)).
 Reads only the Cyprus window of the two public tiles (no account, no cost) and writes, per 250 m
 habitat square, the share of 10 m pixels that are "tree cover" (class 10).
-Out: experiments/02-backtest/weather/worldcover_tree_250m.npy (same rows x cols as habitat_250m.tif)
+Out: archive/data/worldcover_tree_250m.npy (same rows x cols as habitat_250m.tif)
 Run:  site/pipeline/.venv/bin/python experiments/02-backtest/worldcover.py
 """
 from pathlib import Path
@@ -12,7 +12,7 @@ import rasterio
 from rasterio.warp import Resampling, reproject
 
 LAB = Path(__file__).resolve().parents[2]
-OUT = LAB / "experiments/02-backtest/weather/worldcover_tree_250m.npy"
+OUT = LAB / "archive/data/worldcover_tree_250m.npy"
 BASE = "/vsicurl/https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_{}_Map.tif"
 
 

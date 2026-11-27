@@ -1,0 +1,44 @@
+
+== main: people who record mushrooms: 172 forest outings by 30 people · FOUND 24 · NOTHING 148
+                               found  nothing   win   95% range  same month
+live score                      35.0     39.6    46     (35-55)          40
+layer rain_total                 0.3      0.3    47     (35-56)          43
+layer rain_pulse                 0.1      0.0    50     (42-57)          50
+layer temperature                1.0      1.0    55     (48-66)          56
+layer soil_moisture              0.8      0.7    57     (46-67)          48
+layer season_altitude            1.0      0.5    57     (50-67)          47
+layer shade                      0.4      0.3    58     (48-66)          56
+water gate                       0.6      0.8    41     (30-49)          34
+rain 30 d (mm)                  37.6     37.5    47     (33-55)          43
+biggest 3-day rain (mm)         12.3     16.3    38     (27-44)          31
+temp 7 d (C)                    11.6     13.5    39     (30-50)          46
+frost days                       0.0      0.0    51     (49-53)          49
+in forest                        1.0      1.0    50     (50-50)          50
+altitude (m)                   742.5    506.5    59     (50-69)          61
+
+== side: all fungi recorders: 392 forest outings by 115 people · FOUND 24 · NOTHING 368
+                               found  nothing   win   95% range  same month
+live score                      35.0     42.4    44     (34-52)          36
+layer rain_total                 0.3      0.3    43     (32-51)          38
+layer rain_pulse                 0.1      0.0    47     (40-54)          49
+layer temperature                1.0      1.0    56     (50-65)          56
+layer soil_moisture              0.8      0.7    56     (45-64)          48
+layer season_altitude            1.0      0.5    58     (51-69)          48
+layer shade                      0.4      0.3    58     (49-67)          59
+water gate                       0.6      0.8    39     (26-47)          33
+rain 30 d (mm)                  37.6     39.3    43     (35-50)          38
+biggest 3-day rain (mm)         12.3     17.3    36     (28-43)          31
+temp 7 d (C)                    11.6     13.0    43     (36-50)          48
+frost days                       0.0      0.0    51     (49-53)          50
+in forest                        1.0      1.0    50     (50-50)          50
+altitude (m)                   742.5    590.0    57     (50-63)          55
+
+Score tweaks (people who record mushrooms): win all | same month | 2022-24 | 2025-26
+  live score                       46 |   40 |   47 (18) |   49 (6)
+  no water gate                    54 |   49 |   58 (18) |   49 (6)
+  cooler best band 6-13 C          49 |   40 |   51 (18) |   48 (6)
+  cooler + no gate                 58 |   49 |   63 (18) |   52 (6)
+  cooler + no gate + 2x shade      59 |   51 |   65 (18) |   52 (6)
+  areas only (season + shade)      61 |   52 |   60 (18) |   67 (6)
+
+by month (recorders): 10: 1 found / 23 outings · 11: 5 found / 19 outings · 12: 5 found / 22 outings · 1: 5 found / 13 outings · 2: 3 found / 16 outings · 3: 3 found / 43 outings · 4: 2 found / 36 outings

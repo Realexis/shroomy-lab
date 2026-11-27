@@ -117,15 +117,19 @@ def main():
             print(f"{var:28s}{med_y:8.1f}{med_n:9.1f}{m*100:6.0f}{f'({lo*100:.0f}-{hi*100:.0f})':>12s}{mm*100:12.0f}")
     # ---- a few score tweaks that follow the pattern (lab only). Picked BEFORE looking at 2025-26.
     W = B.WEIGHTS
-    def score(v, cool=False, gate=True, shade_x=1.0):
+    def score(v, cool=False, gate=True, shade_x=1.0, areas=False):
         f = {k: v[f"layer {k}"] for k in B.FACTORS}
+        if areas:
+            w = {**W, "rain_total": 0.0, "rain_pulse": 0.0, "temperature": 0.0, "soil_moisture": 0.0}
+            return float(B.F.combine({k: np.array([x]) for k, x in f.items()}, w, np.array([v["in forest"]]))[0])
         if cool:
             tc = {**B.S["temperature"], "zero_at_c": 2, "best_from_c": 6, "best_to_c": 13, "zero_again_c": 20}
             f["temperature"] = float(B.F.temperature_factor(v["temp 7 d (C)"], v["frost days"], tc))
         w = {**W, "shade": W["shade"] * shade_x}
         return float(B.F.combine({k: np.array([x]) for k, x in f.items()}, w, np.array([v["in forest"]]))[0]) * (v["water gate"] if gate else 1.0)
     TWEAKS = {"live score": {}, "no water gate": dict(gate=False), "cooler best band 6-13 C": dict(cool=True),
-              "cooler + no gate": dict(cool=True, gate=False), "cooler + no gate + 2x shade": dict(cool=True, gate=False, shade_x=2.0)}
+              "cooler + no gate": dict(cool=True, gate=False), "cooler + no gate + 2x shade": dict(cool=True, gate=False, shade_x=2.0),
+              "areas only (season + shade)": dict(areas=True)}
     S = [o for o in outs if o["recorder"]]
     print("\nScore tweaks (people who record mushrooms): win all | same month | 2022-24 | 2025-26")
     res["tweaks"] = {}
@@ -146,7 +150,7 @@ def main():
         if o["recorder"]: by_month[int(o["date"][5:7])][o["found"]] += 1
     res["by_month (nothing, found)"] = {m: by_month[m] for m in (10, 11, 12, 1, 2, 3, 4)}
     print("\nby month (recorders): " + " · ".join(f"{m}: {by_month[m][1]} found / {sum(by_month[m])} outings" for m in (10, 11, 12, 1, 2, 3, 4)))
-    json.dump(res, open(LAB / "experiments/06-effort/results.json", "w"), indent=1)
+    json.dump(res, open(LAB / f"experiments/06-effort/results{'_livehab' if '--habitat=live' in sys.argv else ''}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

@@ -67,12 +67,15 @@ GROUP = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--group=")),
 
 # ------------------------------------------------------------------ habitat
 def habitat():
-    with rasterio.open(config.PROCESSED / "habitat_250m.tif") as s:
+    # --habitat=live: the live forest map (backup copy); default: the lab one (with the 15% pine squares)
+    path = (LAB / "experiments/05-pine15-score/backup/habitat_250m_live.tif") if "--habitat=live" in sys.argv \
+        else config.PROCESSED / "habitat_250m.tif"
+    with rasterio.open(path) as s:
         hab = {s.descriptions[i]: s.read(i + 1) for i in range(s.count)}
         hab["transform"] = s.transform
     share, latest = burns.burned_layer()
     hab["burn_share"], hab["burn_date"] = share, latest
-    hab["wc_tree"] = np.load(W / "worldcover_tree_250m.npy")
+    hab["wc_tree"] = np.load(LAB / "archive/data/worldcover_tree_250m.npy")   # dropped layer, kept for re-runs
     return hab
 
 
@@ -95,6 +98,7 @@ def find_events():
         if season < 2022: dropped["before the 2022-23 season (no weather from the live model)"] += 1; continue
         if not (d.month >= 10 or d.month <= 4): dropped["May-September (outside the scored season)"] += 1; continue
         if d >= date.today(): dropped["today"] += 1; continue
+        if "--late" in sys.argv and season < 2025: continue        # held-back seasons only (2025-26)
         keep.append({**r, "season": season})
     # events: same day, within 1 km
     events = []
@@ -152,6 +156,9 @@ def variants(f_all, gate, hab, rows, cols, on):
     # Experiment 06 tweak (picked on the "found vs out-but-nothing" outings): cooler best band, no gate, 2x shade.
     tc = {**S["temperature"], "zero_at_c": 2, "best_from_c": 6, "best_to_c": 13, "zero_again_c": 20}
     f2 = {**f, "temperature": F.temperature_factor(f_all["_t7"], f_all["_frost"], tc)}
+    # "Best areas this season": no daily weather; only season x altitude and shade (experiment 07).
+    no_wx = {**WEIGHTS, "rain_total": 0.0, "rain_pulse": 0.0, "temperature": 0.0, "soil_moisture": 0.0}
+    out["areas only (season + shade)"] = F.combine(f, no_wx, ok)
     out["cooler + no gate + 2x shade"] = F.combine({k: f2[k] for k in FACTORS}, {**WEIGHTS, "shade": WEIGHTS["shade"] * 2}, ok)
     return out
 
@@ -259,7 +266,7 @@ def main():
         seasons=dict(sorted(defaultdict(int, {}).items())),
     )
     for f in facts: summary["seasons"][str(f["date"][:7])] = summary["seasons"].get(str(f["date"][:7]), 0) + 1
-    json.dump(dict(summary=summary, table=table, events=facts), open(LAB / f"experiments/02-backtest/results_{GROUP}{'_loose' if LOOSE else ''}.json", "w"), indent=1)
+    json.dump(dict(summary=summary, table=table, events=facts), open(LAB / f"experiments/02-backtest/results_{GROUP}{'_loose' if LOOSE else ''}{'_livehab' if '--habitat=live' in sys.argv else ''}{'_late' if '--late' in sys.argv else ''}.json", "w"), indent=1)
 
     print(json.dumps(summary, indent=1))
     for subset, t_ in table.items():
